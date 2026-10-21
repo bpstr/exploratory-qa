@@ -4,6 +4,17 @@ Use the [report template](../assets/report-template.md). Report what happened, w
 
 Scale the report to the finding. A simple spelling error can be a compact entry with the exact copy, location and evidence, expected wording and basis, impact, and classification. Reference shared environment or provenance once instead of repeating it. Reserve a full sequence and detailed evidence table for problems that need them.
 
+## Contents
+
+- [Require the finding contract](#require-the-finding-contract)
+- [Preserve the evidence sequence](#preserve-the-evidence-sequence)
+- [Classify before escalating](#classify-before-escalating)
+- [Calibrate impact and certainty](#calibrate-impact-and-certainty)
+- [Investigate efficiently and distinguish tool failures](#investigate-efficiently-and-distinguish-tool-failures)
+- [Verify a reported fix](#verify-a-reported-fix)
+- [Consolidate and maintain findings](#consolidate-and-maintain-findings)
+- [Check small details without inventing defects](#check-small-details-without-inventing-defects)
+
 ## Require the finding contract
 
 Include the following for each finding; mark genuinely unavailable information instead of inventing it:
@@ -66,6 +77,18 @@ Do not equate severity with fix priority. Apply prioritization rules only when p
 - Repeat or vary an action only to answer a remaining question about validity, conditions, or scope. Stop once evidence is sufficient; retain intermittent behavior with observed frequency and context.
 - Do not rerun unrelated journeys or the full platform matrix automatically. Do not repair code or update baselines during an investigation unless the user requested that work.
 - Report root cause only with supporting evidence. Label an explanation such as “a missing flex rule” as a hypothesis until verified; a screenshot establishes the overlap, not its implementation cause.
+
+## Verify a reported fix
+
+Use this procedure when the mission includes retesting a reported defect. Confirmation asks whether that failure still occurs; regression checks ask whether a change affected other behavior. Keep their evidence and conclusions separate, following [ISTQB CTFL section 2.2.3](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf).
+
+1. Recover the original expectation, failing route, evidence, and material conditions. Identify the candidate build and environment and, where available, reliable information linking the proposed fix to that deployment. A merged change alone does not identify the running build. Missing provenance limits attribution; it need not prevent useful observation of the available build.
+2. Recreate the original conditions through authorized setup and ordinary interactions. Preserve relevant role, effective settings, object identity or equivalent history, and pending work. A fresh object may not exercise a defect involving older data. Record material differences instead of silently substituting a simpler route or workaround.
+3. Replay the failure and check the original expected outcome, including persistence, downstream effects, and expected non-effects where relevant. Retain the original evidence and attach new observations to their actual build and conditions.
+4. Report **confirmed for the tested scenario**, **failure still observed**, or **inconclusive**, with the evidence and limits. A passing attempt does not settle an intermittent failure; record actual attempts, outcomes, and comparable trigger conditions. If the candidate build cannot be tied to the fix, describe observed behavior without claiming that this particular fix caused it. If a build is known to lack the fix, report that gap rather than rejecting the fix.
+5. Select an adjacent regression probe only when the changed behavior or a concrete risk justifies it. For example, after correcting a permission rejection, check a relevant permitted route. Record that result separately and stop when the requested question is resolved or the remaining uncertainty is explicit.
+
+Do not require a complete platform sweep, an arbitrary repetition count, or changes to product code to complete a manual retest. A clean confirmation establishes only the tested conditions. Apply the project's issue lifecycle if updating statuses is authorized; these evidence labels do not replace its workflow.
 
 ## Consolidate and maintain findings
 

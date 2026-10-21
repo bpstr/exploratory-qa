@@ -2,6 +2,24 @@
 
 These examples are fictional. Their paths, observations, and evidence labels illustrate reporting; they are not results from a real application. Never reuse them as actual findings.
 
+## Contents
+
+- [A documented action returns the wrong scope](#a-documented-action-returns-the-wrong-scope)
+- [A small text error is still a finding](#a-small-text-error-is-still-a-finding)
+- [A no-op control without a matching requirement](#a-no-op-control-without-a-matching-requirement)
+- [A visual difference that should not become a defect](#a-visual-difference-that-should-not-become-a-defect)
+- [Conflicting documents and incomplete evidence](#conflicting-documents-and-incomplete-evidence)
+- [A persistence claim that screenshots cannot establish](#a-persistence-claim-that-screenshots-cannot-establish)
+- [A saved property is ignored by the operation it governs](#a-saved-property-is-ignored-by-the-operation-it-governs)
+- [A button performs a different valid transition](#a-button-performs-a-different-valid-transition)
+- [An inherited setting legitimately does not change existing items](#an-inherited-setting-legitimately-does-not-change-existing-items)
+- [An asynchronous action has not yet established an outcome](#an-asynchronous-action-has-not-yet-established-an-outcome)
+- [A boundary depends on the documented unit](#a-boundary-depends-on-the-documented-unit)
+- [A round trip exposes retained approval](#a-round-trip-exposes-retained-approval)
+- [A historical label intentionally differs from a current name](#a-historical-label-intentionally-differs-from-a-current-name)
+- [A user perspective raises a question without proving user behavior](#a-user-perspective-raises-a-question-without-proving-user-behavior)
+- [A passing alternative does not verify the original fix](#a-passing-alternative-does-not-verify-the-original-fix)
+
 ## A documented action returns the wrong scope
 
 **Finding:** Export includes 42 records while the active filter shows 7 matching records.
@@ -89,3 +107,33 @@ Fictional `docs/notification-settings.md`, “Defaults and overrides,” approve
 Fictional `docs/search-operations.md` describes queued processing but provides no completion deadline. Record the affected index, request time, visible job state, and observation interval. “Queued” establishes acceptance, not completion or failure. Check an available job-status view and, once completion is reported, repeat the relevant search with controlled inputs.
 
 **Document status: Applicable for asynchronous behavior; timing expectation unresolved.** While work remains queued, record the operation as pending and the outcome as unverified. Do not label it a defect solely because the exploration budget ended. An applicable deadline that is exceeded, a completed job with demonstrably stale results, or missing promised progress feedback can support a separate finding. State which condition was actually observed.
+
+## A boundary depends on the documented unit
+
+Fictional `docs/invitations.md`, revision `r8`, allows at most 64 distinct recipients, consolidates duplicate addresses, and rejects an over-limit batch before creating invitations. Select 63, 64, and 65 distinct recipients through the normal interface and inspect the created set or rejection, using only authorized test recipients.
+
+If 65 distinct recipients are accepted and invitations created, report the documented limit violation with the input and affected set. If 65 entered rows include a duplicate and produce 64 distinct invitations, that observation matches the rule. Counting input rows as distinct recipients would create a false finding. An input control that prevents a 65th distinct entry establishes that restriction; it does not prove the unobserved submission path also enforces the limit. Keep cases designed and cases executed separate.
+
+## A round trip exposes retained approval
+
+Fictional `docs/review.md`, revision `r16`, says withdrawing a submission invalidates its approval and resubmission requires a new review. An author submits a document, a reviewer approves it, and the author withdraws it. Follow that same document through an edit and resubmission. If it becomes published without the required new review, preserve the approval, withdrawal, effective permissions, resubmission, and published-state evidence.
+
+This supports a workflow defect when the applicable rule and lack of a legitimate bypass are established. Checking Submit and Withdraw independently would not exercise this history. A different product whose rule explicitly preserves approval for unchanged content needs a different expectation; do not infer invalidation solely from a returned status label.
+
+## A historical label intentionally differs from a current name
+
+Fictional `docs/audit-history.md`, revision `r4`, requires completed approval records to preserve the approver's display name at the time of approval. After an authorized account rename, the profile shows the new name and an earlier approval shows the old name, tied to the same user identity.
+
+That difference is intentional under the historical-snapshot rule. Do not file a stale-label defect or rewrite the historical value. A broken link to the wrong person or a missing promised identity remains a separate question. When the product does not define snapshot versus live labels, preserve both observations and report the unresolved intent.
+
+## A user perspective raises a question without proving user behavior
+
+An approver follows a supplied test notification link. The page's instruction says to select "Review," but the available controls say "Open details" and "More." Inspect whether the promised action is reachable for this role and state, and check the applicable terminology or workflow documentation.
+
+The mismatch can justify a concrete copy finding or usability concern once its context is established. Imagining a first-time approver does not establish that real users abandon the task, how often they struggle, or which redesign would improve completion. If the link opens the wrong role's view or approval is legitimately unavailable, record that evidence before choosing the finding.
+
+## A passing alternative does not verify the original fix
+
+A defect report records that an existing project ignores a review requirement after a particular edit-and-resubmit sequence. On a preview build, a newly created project correctly enters review, but the original sequence and relevant historical conditions have not been exercised.
+
+Record the new-project result as observed behavior and leave confirmation of the reported defect inconclusive. Replay the original route with comparable configuration and history, identify the tested build, and check the original expected effect. A missing source revision limits attribution to a specific fix; it does not prevent observing the available build. Conversely, a passing replay confirms only its tested conditions, especially if the original failure was intermittent. Preserve any adjacent regression results separately.

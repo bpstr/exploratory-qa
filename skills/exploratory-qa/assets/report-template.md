@@ -56,16 +56,26 @@
 
 **Suggested next step** — [Optional: the smallest clarification, investigation, or correction supported by the finding. Do not prescribe an unverified implementation fix.]
 
+**Manual retest, when requested** — [Original finding and failing conditions; candidate build/environment and known fix provenance; any material differences; replayed route and evidence; confirmed for the tested scenario / failure still observed / inconclusive, with reasons. Keep any adjacent regression observations separate. Do not infer that one passing attempt resolves an intermittent failure.]
+
 <!-- Repeat only for independently actionable findings. Group evidenced repeated instances and list their locations. Do not duplicate product questions already captured in a finding. -->
 
 ## Coverage and limitations
 
 - **Examined:** [Goals, flows, states, documentation, and material probes actually reviewed.]
 - **Workflow coverage, when relevant:** [Entry points and branches discovered, transitions or setting effects examined, and handoffs or dependencies left unexamined.]
+- **Case selection, when relevant:** [Input classes, boundaries and units, business rules, transition pairs, or configuration combinations chosen and why; significant unexamined cases. Claim pairwise or other model coverage only when it was checked against the stated model.]
 - **Platforms:** [Actual browser/OS/device or emulation; viewport, input, locale, theme, zoom where relevant.]
 - **Evidence mode:** [Live exploration / supplied evidence review / a clearly described combination.]
 - **Blocked or unexamined:** [Unsupported tools, missing access, unvisited flows, and platform gaps. Keep tool errors separate from product findings.]
 - **Remaining risks and questions:** [What further evidence would resolve them.]
 - **Investigated observations not filed:** [Optional useful examples of intended behavior or disproved suspicions, with reasons.]
+
+## Session learning and next investigation
+
+<!-- Include only material learning; omit this section if it would repeat findings or coverage. No required time ratios, attention scores, or invented personal feelings. -->
+
+- **What changed our understanding:** [Newly established behavior, a revised expectation, or a resolved suspicion, with its basis.]
+- **Useful next investigation:** [A bounded user goal and remaining question, the evidence that would resolve it, and any obstacle. Mark this as proposed; do not imply it was executed or automatically start a new campaign.]
 
 [A bounded exploration does not establish defect absence, full accessibility conformance, or complete platform coverage. State only conclusions supported by this session.]
