@@ -1,0 +1,122 @@
+# Inspect the product as a user
+
+Use this guide for the active investigation in [SKILL.md](../SKILL.md).
+Choose probes that address an observed inconsistency or a relevant product risk; do not expand them into a compulsory matrix.
+
+## Contents
+
+- [Establish the expected experience](#establish-the-expected-experience)
+- [Read the interface carefully](#read-the-interface-carefully)
+- [Compare small visual details](#compare-small-visual-details)
+- [Follow routes and controls](#follow-routes-and-controls)
+- [Inspect sequences, persistence, and recovery](#inspect-sequences-persistence-and-recovery)
+- [Check input and accessibility behavior](#check-input-and-accessibility-behavior)
+- [Describe platform coverage honestly](#describe-platform-coverage-honestly)
+- [Turn observations into justified findings](#turn-observations-into-justified-findings)
+
+## Establish the expected experience
+
+- Identify the user's goal, role, current state, and relevant product documentation before judging the screen.
+- Consult [project-context.md](project-context.md) when terminology, supported behavior, or requirements are unclear.
+- State the expectation before the probe: what should this action accomplish, and what evidence would demonstrate it?
+- Use documented behavior, an approved design, or a comparable working flow as the basis; retain conflicting evidence.
+- Preserve the initial screen and exact state before interacting with a suspected failure.
+- Use only available tools and authorized accounts, data, and actions; record missing capabilities as coverage limits.
+
+## Read the interface carefully
+
+- Read the encountered interface in visual order; do not scan only headings and primary buttons.
+- Read labels, body text, navigation, captions, badges, units, footnotes, and inline links.
+- Reveal relevant tooltips, help text, menus, and expanded descriptions through their normal interactions.
+- Inspect placeholders separately from persistent labels and entered values; check whether necessary instructions disappear during entry.
+- Read validation errors, empty states, loading messages, success messages, and recovery instructions when those states occur.
+- Compare each message with the current state: does it describe the right object, action, actor, and result?
+- Compare action wording with its consequence: distinguish saving a draft, publishing, deleting, archiving, and leaving a view.
+- Check whether instructions refer to controls, settings, or destinations that exist and are reachable for this role.
+- Trace one concept through navigation, page title, dialog, button, and confirmation; investigate unexplained terminology changes.
+- Check spelling, grammar, punctuation, capitalization, duplicated words, and leftover placeholder or debug text.
+- Respect product vocabulary, proper names, and user-authored content; do not substitute stylistic preferences for errors.
+- Record the locale and your language confidence; verify uncertain language judgments before proposing corrections.
+- For Hungarian content, inspect relevant accents such as `ő` and `ű`; apply equivalent language-specific care only to supported locales.
+- Check untranslated strings and language mixing against the documented localization policy, including intentional brand terms.
+- Reconcile counts, totals, currencies, units, date formats, and time zones with the shown filters and documented meaning.
+- Distinguish a page count, loaded subset, and overall total before reporting inconsistent numbers.
+- Inspect truncation and wrapping for lost meaning, hidden distinctions, clipped accents, or an inaccessible complete value.
+- Quote verified visible text exactly, preserving punctuation and accents; mark omitted or illegible portions explicitly.
+- Label evidence as screenshot, visible text read through the browser, DOM extraction, accessibility text, or OCR transcription.
+- Verify suspected OCR mistakes against the image; do not report the recognizer's guess as product copy.
+- Do not claim DOM or accessibility text is visible unless the rendered interface confirms it; record discrepancies separately.
+
+## Compare small visual details
+
+- Compare paired examples of the same component, purpose, and state before calling a difference inconsistent.
+- Align locale, role, theme, content length, loading state, zoom, and viewport when those factors affect the comparison.
+- Inspect spacing, alignment, typography, icon meaning, border treatment, emphasis, and the placement of related actions.
+- Inspect clipped text, overlapping elements, hidden controls, misplaced tooltips, broken images, and unintended scroll containers.
+- Check whether selected, disabled, loading, hovered, and focused states remain distinguishable where relevant.
+- Check whether the apparent hit area matches the usable control and whether neighboring controls invite accidental activation.
+- Inspect long labels, realistic names, and populated content when the available fixtures support them.
+- Follow a suspected wrapping or overflow problem across the nearest relevant width change; avoid exhaustive viewport sweeps.
+- Inspect overlays against sticky headers, footers, dialogs, and scroll boundaries in the actual affected state.
+- Observe changes during loading and interaction; a settled screenshot cannot establish whether content flickered or jumped.
+- Capture a short sequence or recording when timing or movement is material and the tool supports it.
+- Allow intentional platform conventions and responsive rearrangement; compare meaning and task completion, not identical pixels.
+- Describe the contradiction and its consequence; exclude unsupported preferences about attractiveness or fashionable styling.
+- Call a problem a regression only when a comparable prior version or approved baseline supports that claim.
+
+## Follow routes and controls
+
+- Discover controls through the rendered interface and follow actual destinations; do not invent routes from naming patterns.
+- Inspect the visible label and surrounding explanation before activating a control.
+- Verify the resulting page, state, download, dialog, or other promised outcome; a successful click is not completion.
+- Check an apparent dead end for an unnoticed new tab, blocked popup, delayed response, permission explanation, or offscreen feedback.
+- Observe enabled and disabled behavior through normal pointer, touch, or keyboard input supported by the environment.
+- Do not use forced clicks, script-invoked handlers, removed overlays, or altered permissions to establish user accessibility.
+- Preserve a failed normal interaction even if a diagnostic tool can subsequently reach the underlying element.
+- Inspect Back, Cancel, close, and return navigation when they matter to the user's task.
+- Check whether the return path preserves the expected selection, filters, scroll position, or draft according to product behavior.
+- Exercise only authorized consequences; use appropriate test records for destructive or externally visible actions.
+
+## Inspect sequences, persistence, and recovery
+
+- Follow the full relevant sequence: starting state, action, immediate feedback, settled result, and later retrieval.
+- Verify a reported save by reopening or reloading the affected record when persistence is in scope.
+- Check that another relevant view agrees with the result; investigate stale labels, badges, totals, and selections.
+- Explore interruption, repeated input, or changed action order only when it tests a plausible risk in this flow.
+- After validation fails, correct the input and check that errors clear, retained data remains, and submission becomes possible.
+- After a failed operation, inspect whether retry is discoverable and whether it duplicates or loses work.
+- Where supported and authorized, inspect a relevant slow, interrupted, expired-session, or offline transition and recovery.
+- Distinguish immediate feedback, asynchronous completion, and durable success; respect documented eventual consistency.
+- Record timing and repeat conditions for intermittent failures; do not label an unrepeatable observation as disproved.
+- Stop repeating a sequence once the evidence resolves the current question; broaden only to investigate a concrete remaining risk.
+
+## Check input and accessibility behavior
+
+- Navigate the relevant flow by keyboard where supported; observe order, visible focus, activation, and escape paths.
+- Inspect dialog entry, contained focus, background interaction, close behavior, and logical focus restoration.
+- Use the [W3C modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) as applicable guidance, accounting for its workflow exceptions.
+- Inspect whether sticky content or overlays hide the focused control; capture the actual focused state.
+- Inspect zoom and narrow-layout behavior for lost information or function, not merely a changed arrangement.
+- Apply [W3C reflow guidance](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) with its exceptions for content needing two-dimensional layout.
+- Distinguish browser zoom, text enlargement, viewport resizing, and screenshot scaling; report what was actually changed.
+- Check whether instructions depend on hover, color, shape, or position alone when that dependency affects the task.
+- Inspect reduced-motion behavior only when the environment exposes that preference and movement can be observed.
+- Use accessibility-tree or DOM evidence to investigate semantics, but do not claim it demonstrates a screen reader's actual announcements.
+- Name the specific observed barrier; do not turn a limited inspection into an accessibility conformance verdict.
+
+## Describe platform coverage honestly
+
+- Record the actual OS, browser or engine, viewport, zoom, input method, locale, theme, and relevant product version when available.
+- Label each environment as actual desktop, emulated mobile, simulator, or physical mobile device; state unknown details.
+- Do not infer real-device behavior from a mobile viewport or infer branded Safari coverage from a WebKit run.
+- Investigate software-keyboard occlusion, native dialogs, safe areas, rotation, and background/resume only where the environment exposes them.
+- Compare the supported platform's expected conventions with its observed behavior; do not impose desktop interactions on touch interfaces.
+- State unavailable platform checks explicitly instead of fabricating observations or silently marking them passed.
+
+## Turn observations into justified findings
+
+- Follow [findings.md](findings.md) to separate evidence, expectation, impact, confidence, and unresolved questions.
+- Include exact copy and a comparable example when they explain the defect; retain enough screenshot context to locate it.
+- Match each finding to the applicable documentation or other stated expectation; describe uncertainty when that basis is incomplete.
+- Use [Nielsen's usability heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) to generate questions, not automatic defect verdicts.
+- Report the inspected scope and remaining uncertainty; never convert an uneventful sample into a claim that the product has no defects.

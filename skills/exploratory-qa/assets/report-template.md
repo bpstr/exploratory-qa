@@ -1,0 +1,66 @@
+# Exploratory QA findings — [product and tested scope]
+
+<!-- Replace placeholders with observed facts. Omit irrelevant fields and empty sections. Never invent screenshots, document matches, environments, reproduction attempts, or test results. Keep concise findings concise while retaining their evidential basis. -->
+
+[Lead with the most consequential justified findings and the main remaining uncertainty. If none were established, state that result and the limited scope.]
+
+## Findings
+
+<!-- For simple findings, use a compact entry: title; category, severity and confidence with reasons; exact observation and evidence; expected result and documentary status/basis; impact and uncertainty. Refer to shared context. Use the expanded structure below when a sequence or conflicting evidence needs explanation. -->
+
+### [ID] — [Specific observable problem]
+
+**Category:** [Defect / Suspected defect / Usability concern / Product question]
+
+**Severity:** [Project level, or Critical / High / Medium / Low] — [impact-based reason]
+
+**Confidence:** [High / Medium / Low] — [evidence and unresolved alternatives]
+
+**Regression status:** [Confirmed against identified comparable baseline / Unknown / Other supported conclusion]
+
+**Affected goal and context**
+
+[The user's task. Route or screen, relevant build, role, data/state, actual platform, viewport, input method, and locale. Include conditions needed to reproduce or interpret the finding; mark important unknowns.]
+
+**Steps and actual result**
+
+1. [Initial state and normal user action.]
+2. [Next essential action and actual outcome; preserve relevant waits, retries, reloads, or navigation.]
+
+[Exact observed UI copy, preserving punctuation and locale. Identify whether it came from a screenshot, visible browser text, DOM, accessibility text, OCR, or a supplied transcript.]
+
+**Expected result and justification**
+
+[What should happen and why: applicable requirement, explicit UI promise, established equivalent behavior, task outcome, or applicable standard. Explain the correspondence, not just the source title.]
+
+- **Document status:** [Applicable / No match / Unavailable / Apparently stale / Conflicting]
+- **Source:** [Path or canonical URI, section, available revision/date; or scoped search locations and meaningful terms if no match]
+- **Relevant passage:** [Short excerpt or faithful paraphrase, retaining conditions]
+- **Applicability or conflict:** [How it applies to this role, state, platform, feature, and build; include competing sources]
+
+**Evidence and reproduction**
+
+| Evidence | What it establishes | Action and state |
+| --- | --- | --- |
+| [Actual screenshot, recording, trace, or supplied evidence reference] | [Observable fact, with limits] | [Before/after which action, relevant state/build, time if known] |
+
+[Observed attempts and outcomes, if repeated. Explain what was not reproduced or could not be checked; do not infer a rate from an unknown denominator.]
+
+**User impact and uncertainty**
+
+[Separate observed consequence from inferred risk. Identify a workaround, if demonstrated. Record competing explanations and remaining questions. State a root cause only when evidence supports it.]
+
+**Suggested next step** — [Optional: the smallest clarification, investigation, or correction supported by the finding. Do not prescribe an unverified implementation fix.]
+
+<!-- Repeat only for independently actionable findings. Group evidenced repeated instances and list their locations. Do not duplicate product questions already captured in a finding. -->
+
+## Coverage and limitations
+
+- **Examined:** [Goals, flows, states, documentation, and material probes actually reviewed.]
+- **Platforms:** [Actual browser/OS/device or emulation; viewport, input, locale, theme, zoom where relevant.]
+- **Evidence mode:** [Live exploration / supplied evidence review / a clearly described combination.]
+- **Blocked or unexamined:** [Unsupported tools, missing access, unvisited flows, and platform gaps. Keep tool errors separate from product findings.]
+- **Remaining risks and questions:** [What further evidence would resolve them.]
+- **Investigated observations not filed:** [Optional useful examples of intended behavior or disproved suspicions, with reasons.]
+
+[A bounded exploration does not establish defect absence, full accessibility conformance, or complete platform coverage. State only conclusions supported by this session.]
