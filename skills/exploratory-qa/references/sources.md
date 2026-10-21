@@ -8,9 +8,17 @@ Use these primary sources to understand or maintain the method. Routine executio
 
 ### ISTQB: Foundation Level syllabus v4.0.1
 
-[Official syllabus](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf), especially sections 1.5.1, 4.4.2, 5.1.3, 5.2, and 5.5.
+[Official syllabus](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf), especially sections 1.5.1, 2.2.3, 4.2, 4.4.2, 5.1.3, 5.2, and 5.5.
 
 Use its treatment of tester skills, exploratory testing, risk, completion criteria, and defect management as the broad methodological foundation. Translate curiosity and critical thinking into observable investigation steps. Prioritize user consequences, adapt exploration as evidence changes, and communicate unresolved risks. Do not measure the quality of this work by the number of generated tests.
+
+Use section 4.2 for input partitions, domain-appropriate boundaries, decision tables, and state transitions in [test-design.md](test-design.md) and [workflows.md](workflows.md). Use section 2.2.3 to separate confirmation of an original failure from regression checks of other behavior. Select the relevant techniques and cases; a model's coverage criterion is not a universal completion requirement for every exploratory charter.
+
+### ISTQB: Advanced Test Analyst syllabus v4.0
+
+[Official syllabus hosted by ASTQB](https://astqb.org/assets/documents/ISTQB-CTAL-TA-Syllabus-v4.0-EN-4.pdf), especially sections 3.1.2, 3.2.2, and 3.5.1.
+
+Use its treatment of combinatorial selection, consecutive transition sequences, round trips, and risk-sensitive technique choice. Preserve known interactions involving several conditions even when a smaller sample covers their pairs. Derive the relevant model from product evidence and report sampled and untested cases honestly.
 
 ### James Bach: Heuristic Test Strategy Model
 
@@ -23,6 +31,12 @@ Use the model's context-sensitive guidewords to broaden investigation across pro
 [Original explanation](https://developsense.com/blog/2012/07/few-hiccupps).
 
 Use this account of testing oracles to explain where an expectation comes from: product claims, purpose, history, internal consistency, and other relevant comparisons. Its central limitation matters: such expectations are fallible and contextual. Require a justified expectation, investigate legitimate differences, and retain uncertainty when sources disagree. An inconsistency alone does not establish a defect.
+
+### Jonathan and James Bach: Session-Based Test Management
+
+[Original article and download](https://www.satisfice.com/download/session-based-test-management).
+
+Use the reviewable-session and debrief concepts to retain learning and direct the next useful investigation. Adapt the report to observations, revised understanding, obstacles, and unresolved questions. Do not turn time accounting into a universal quality threshold or require an agent to invent personal feelings or attention scores.
 
 ### Jakob Nielsen: Usability heuristics
 
@@ -46,15 +60,23 @@ Playwright supports authored visual regression checks against reference screensh
 
 ### W3C WAI: Reflow, dialogs, and evaluation limits
 
-[Reflow explanation](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html), [modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/), and [evaluation tools overview](https://www.w3.org/WAI/test-evaluate/tools/).
+[Reflow explanation](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html), [modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/), [evaluation tools overview](https://www.w3.org/WAI/test-evaluate/tools/), and [WCAG 2.2 status messages](https://www.w3.org/TR/WCAG22/#status-messages).
 
 Use reflow guidance to examine lost content or functionality under enlargement, preserving its scope and exceptions. Use the dialog pattern to investigate focus movement, keyboard operation, dismissal, and return paths. Distinguish supporting explanations and design patterns from normative requirements. Automated checks and structural inspection have limits; do not turn a limited review into an accessibility conformance claim or imply screen-reader testing that did not occur.
+
+For actual screen-reader journeys, inspect meaningful names, roles, states, and status information in the tested reader/browser context. Preserve the actual announcement evidence and relevant vendor variation. The status-message criterion does not impose a universal one- or two-second announcement deadline.
 
 ### Chrome and Playwright: Emulation boundaries
 
 [Chrome Device Mode](https://developer.chrome.com/docs/devtools/device-mode/) and [Playwright browser documentation](https://playwright.dev/docs/browsers).
 
 Device emulation approximates conditions; it does not establish that an actual mobile device was tested. Playwright's WebKit build is not branded Safari. Record the real browser, operating system, input mode, and emulation settings. Keep actual-device evidence and simulated conditions distinguishable in findings and coverage reports.
+
+## Manual QA material considered from Testland
+
+The comparison with [Testland's manual-testing material](https://github.com/testland/qa/tree/main/plugins/qa-manual-testing) informed the selection of additions. Relevant source guides are [decision tables](https://github.com/testland/qa/blob/main/plugins/qa-manual-testing/skills/decision-table-test-design/SKILL.md), [state transitions](https://github.com/testland/qa/blob/main/plugins/qa-manual-testing/skills/state-transition-test-design/SKILL.md), [user/scenario/data tours](https://github.com/testland/qa/blob/main/plugins/qa-manual-testing/skills/exploratory-testing/references/fcc-cuts-vids.md), [session debriefs](https://github.com/testland/qa/blob/main/plugins/qa-manual-testing/skills/exploratory-testing/references/debrief.md), [confirmation testing](https://github.com/testland/qa/blob/main/plugins/qa-defect-management/skills/confirmation-testing-workflow/SKILL.md), and [screen-reader journeys](https://github.com/testland/qa/blob/main/plugins/qa-accessibility/skills/screen-reader-test-author/SKILL.md). Testland attributes the touring heuristic to [Michael Kelly's original post](https://michaeldkelly.com/blog/2005/9/20/touring-heuristic.html); its worked elaborations are distinct from that original description.
+
+Use these as methodological context for the original, scoped procedures in this skill. The adaptation retains manual reasoning and checks primary technique definitions above; it does not import Testland's skills, code generators, mandatory matrices, fixed time-ratio gates, or announcement deadlines. Tours generate questions, while findings still require an applicable expectation and evidence. A perspective imagined by an agent is not a study of real users.
 
 ## Packaging and installation
 

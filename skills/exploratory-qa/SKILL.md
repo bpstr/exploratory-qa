@@ -1,6 +1,6 @@
 ---
 name: exploratory-qa
-description: Explore a product through its rendered interface to discover workflows and justify functional, visual, content, and usability problems that authored checks may miss. Use for exploratory QA, complex user journeys, action and state-transition checks, settings with incorrect downstream effects, visual and copy review, dead controls, and cross-platform behavior. Read relevant project or workspace documentation, compare expected with actual outcomes, and report findings with evidence, impact, and uncertainty.
+description: Explore a product through its rendered interface to discover workflows and justify functional, visual, content, and usability problems that authored checks may miss. Use for exploratory QA, manual test design, boundaries and business-rule combinations, complex user journeys, action and state-transition checks, settings with incorrect downstream effects, visual and copy review, dead controls, cross-platform behavior, and manual fix verification. Read relevant project or workspace documentation, compare expected with actual outcomes, and report findings with evidence, impact, and uncertainty.
 ---
 
 # Exploratory QA
@@ -37,6 +37,8 @@ Use [workflows.md](references/workflows.md) when investigating a sequence, a con
 
 ## 3. Observe, read, and interact
 
+Use [test-design.md](references/test-design.md) when choosing input values or interacting conditions. Select the method that answers the current question: equivalence classes and boundaries for input rules, decision tables for conditional outcomes, or deliberate combination sampling for a larger configuration space. Use [workflows.md](references/workflows.md) for forbidden transitions, transition pairs, and round trips. Record what the selected cases cover and what remains unexamined; do not require an exhaustive matrix.
+
 Read [inspection.md](references/inspection.md) for the probes relevant to the active charter. Do not turn every probe into a compulsory test matrix.
 
 1. Observe the rendered starting state before acting. Combine screenshots with available visible-text, DOM, or accessibility information; structure alone does not establish visual appearance.
@@ -45,7 +47,7 @@ Read [inspection.md](references/inspection.md) for the probes relevant to the ac
 4. Inspect spacing, alignment, wrapping, clipping, overlap, hierarchy, icons, emphasis, and control states. Compare equivalent components under comparable conditions. Distinguish intentional responsive or platform differences from lost meaning or function.
 5. Follow controls through ordinary pointer, keyboard, or supported touch interactions. Inspect the actual destination or outcome. A tool reporting a successful click is not proof that a button works.
 6. Follow the relevant sequence from action to immediate feedback, settled result, and later retrieval. Verify persistence or agreement across views when the task depends on it. A success toast alone does not establish a successful save.
-7. Probe meaningful changes of state, content, width, input method, role, or platform when available. Check recovery, focus, Back/Cancel, validation correction, long content, and interrupted flows where the risk warrants it.
+7. Probe meaningful changes of state, content, width, input method, role, or platform when available. Check recovery, focus, Back/Cancel, validation correction, long content, and interrupted flows where the risk warrants it. Use a specific user perspective or a record's history and relationships when those reveal a relevant risk that a fresh happy-path record would miss.
 
 Capture the failed normal route before a workaround. Do not use forced clicks, direct API calls, script-invoked handlers, or removed overlays to claim that the user flow works. Record relevant automatic scrolling, waiting, retries, or other tool behavior that could conceal user friction.
 
@@ -106,10 +108,15 @@ Group repeated instances only when the evidence supports a shared behavior and a
 
 End with examined scope, actual platform coverage, blocked or unexamined areas, and unresolved risks. If no justified findings were established, say so with the scope; do not assert that the product passed QA or contains no defects.
 
+Record material learning: an expectation revised, a suspicion resolved, or a useful next investigation and the evidence it would seek. Keep this debrief brief and distinguish a proposed follow-up from work actually performed.
+
+When asked to verify a fix, follow the manual confirmation procedure in [findings.md](references/findings.md#verify-a-reported-fix). Replay the original route under materially comparable conditions, identify the tested build, and keep confirmation of the original defect separate from any targeted adjacent regression checks.
+
 Produce a report by default. File issues, change code, update baselines, or publish external messages only when that work is part of the user's authorization. Recommend a targeted automated check only after understanding the behavior and a useful expected result.
 
 ## Supporting material
 
+- [Manual test design](references/test-design.md): select representative inputs, boundaries, business-rule combinations, and bounded interaction samples.
 - [Inspection guide](references/inspection.md): content, visual details, interaction sequences, accessibility probes, and platform coverage.
 - [Workflow guide](references/workflows.md): discover journeys, define expected actions, trace property effects, and investigate dependent state changes.
 - [Project context](references/project-context.md): targeted document discovery, applicability, and conflicting sources.

@@ -2,6 +2,18 @@
 
 Use this guide with [SKILL.md](../SKILL.md) when quality depends on a sequence, a state transition, or a property that changes later behavior. Discover what users can do and what those actions mean; do not limit exploration to predetermined steps or whether individual controls respond.
 
+## Contents
+
+- [Discover journeys from the product](#discover-journeys-from-the-product)
+- [Build the map incrementally](#build-the-map-incrementally)
+- [Define the action contract](#define-the-action-contract)
+- [Follow properties into the behavior they govern](#follow-properties-into-the-behavior-they-govern)
+- [Follow branches, order, and recovery](#follow-branches-order-and-recovery)
+- [Probe transitions and their history](#probe-transitions-and-their-history)
+- [Compare conditions without overstating causality](#compare-conditions-without-overstating-causality)
+- [Respect asynchronous timing](#respect-asynchronous-timing)
+- [Report the first divergence and stop responsibly](#report-the-first-divergence-and-stop-responsibly)
+
 ## Discover journeys from the product
 
 Start with a user goal and the domain objects involved: a task, document, project, invitation, order, or account. Identify who creates, changes, consumes, reviews, and completes each object. Follow visible navigation, menus, contextual actions, status changes, helper text, and settings to discover possible paths.
@@ -52,6 +64,19 @@ Investigate order when it could change meaning: setting a property before or aft
 For long journeys, preserve checkpoint evidence, object identities, actors, and outstanding operations. Resume from a known state rather than silently recreating a different object. When another role or device is unavailable, mark that handoff untested and continue useful reachable work.
 
 Use authorized test records and actions. Repeat operations only when repetition is safe within the existing authorization. Establish whether a prior mutation occurred before retrying it; do not create duplicate sends, purchases, or destructive effects to improve reproduction statistics.
+
+## Probe transitions and their history
+
+When a lifecycle or workflow presents a concrete risk, extend the working map with the relevant starting state, event, guard or prerequisite, expected next state, and expected effects. Derive allowed and forbidden transitions from applicable evidence. An action missing from the current screen alone does not establish a universal business rule.
+
+- **Forbidden transitions:** Select consequential attempts, such as editing a finalized record or resubmitting a cancelled request, only where the normal user route permits an attempt. Check rejection feedback, retained state, and relevant non-effects. Do not force disabled controls, bypass guards, or invent an API route to make a case reachable.
+- **Isolate rejected attempts:** Start each selected invalid attempt from a known state. Verify its result before proceeding; separate attempts when an earlier failure could alter the prerequisites or hide another defect. If the attempt is unavailable, record the observed restriction and leave any unobserved enforcement unverified.
+- **Transition pairs:** Exercise a meaningful pair consecutively when the second action could depend on how the first changed state. Testing both actions independently does not test their interaction. Look for retained approvals, counters, selections, or pending work that should change according to the contract.
+- **Round trips:** Where supported and authorized, return through a reversible path such as submit → withdraw → submit. Check documented reset and retention behavior; do not assume the returned state must erase its history or exactly match a newly created object.
+
+For example, if withdrawing a submission is documented to invalidate its approval, a later submission should require the appropriate review again. Observe each checkpoint and the consuming action; a return to the same status label does not establish that the old approval was cleared.
+
+Record the states, individual transitions, selected pairs or round trips, and rejected attempts actually exercised. Keep blocked, unavailable, and untested cases distinct. Reaching every state does not establish coverage of every transition or sequence; choose further probes only to resolve a material risk or uncertainty.
 
 ## Compare conditions without overstating causality
 

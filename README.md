@@ -20,6 +20,8 @@ The skill uses the agent's existing browser or computer-use tools. It includes a
 | Interaction and recovery | What happens after cancellation, repeated activation, invalid input, interrupted work, or navigation back? Can the user recover? |
 | State and persistence | Does a successful change survive reload or a return visit? Do related views and accounts reflect the same underlying result? |
 | Platforms and input | Does the journey remain coherent across available viewport sizes, themes, locales, zoom levels, and keyboard or pointer input? |
+| Manual case selection | Which input classes, boundaries, rule combinations, and action sequences are most likely to resolve the current risk? |
+| Users and record history | Can a relevant user discover and complete the journey? Do older records and changed relationships preserve their documented meaning? |
 | Product expectations | Does the observed behavior agree with applicable project documentation, workspace decisions, supported features, and user-facing promises? |
 
 Every encountered screen deserves attention, including menus, dialogs, empty states, errors, and confirmations. The agent should read their visible copy and inspect their layout, rather than only locating the next control. Screenshots and interaction history supply evidence; DOM, accessibility, network, API, or data inspection can strengthen a finding when those tools are available and authorized.
@@ -34,6 +36,19 @@ Every encountered screen deserves attention, including menus, dialogs, empty sta
 6. **Report the evidence.** Explain the user impact, what was inspected, what remains untested, and the next useful action. A completed journey alone does not establish that every step was healthy.
 
 Exploration is bounded by risk and available evidence. Additional checks should answer a concrete question; repeated clicks and a large volume of reports are not measures of quality.
+
+## Choose revealing manual probes
+
+Use the [manual test-design guide](skills/exploratory-qa/references/test-design.md) to choose cases deliberately:
+
+- **Input classes and boundaries:** separate values that should be accepted, rejected, or interpreted differently; inspect the meaningful neighbors of an actual product limit. A fictional 64-record limit suggests 63, 64, and 65 records, with the expected result grounded in the applicable rule.
+- **Business-rule combinations:** use a small decision table when role, state, and effective settings jointly determine the outcome. Keep expected rejections distinct from genuinely impossible combinations.
+- **Transition history:** inspect consequential forbidden attempts, consecutive actions, and supported round trips. Submitting after a withdrawal may expose retained state that separate checks of Submit and Withdraw miss.
+- **User and data perspectives:** derive a scenario from a person's goal and starting knowledge, or follow the same record through relevant relationship and history changes.
+
+Select techniques by the active risk and record the sample's limits. A case table is a plan until its cases are exercised. A passing sample does not establish exhaustive rule, platform, or interaction coverage. The skill provides manual investigation guidance, without adding code generators or an execution framework.
+
+Close a useful session with what changed the tester's understanding and the smallest proposed next investigation. When asked to verify a fix, replay the original failure under materially comparable conditions and distinguish confirmation from any targeted adjacent regression checks. See the [findings guide](skills/exploratory-qa/references/findings.md#verify-a-reported-fix).
 
 ## Discover workflows and check their meaning
 
@@ -143,6 +158,10 @@ Include documentation locations or a baseline when available. The [product conte
 
 > Use exploratory-qa to discover the content approval workflow in our test workspace. Identify the relevant roles, states, prerequisites, and branches from the UI and project docs. Investigate whether Require approval actually changes what happens after submission. Trace the same content item through the dependent views, and report where the expected transition differs from the observed result.
 
+**Select manual probes and verify a fix:**
+
+> Use exploratory-qa to investigate the approval-setting fix in the supplied preview build. Replay the reported failing route with comparable object history, then choose relevant rule combinations and transition sequences from the documented behavior. Distinguish observed results from proposed checks, identify any unknown build or configuration details, and explain what the retest establishes.
+
 The skill can still review supplied screenshots or recordings when live interaction is unavailable, but should identify that reduced scope and avoid claiming behavior it could not observe.
 
 ## Findings contract
@@ -172,10 +191,11 @@ Severity describes user impact. Confidence describes the strength of evidence. P
 | --- | --- |
 | [SKILL.md](skills/exploratory-qa/SKILL.md) | Activation guidance and investigation workflow |
 | [Agent metadata](skills/exploratory-qa/agents/openai.yaml) | Codex interface metadata |
-| [Inspection guide](skills/exploratory-qa/references/inspection.md) | Text, visual, interaction, state, and platform inspection |
-| [Workflow guide](skills/exploratory-qa/references/workflows.md) | Journey discovery, expected actions, property effects, branches, and dependencies |
+| [Manual test-design guide](skills/exploratory-qa/references/test-design.md) | Input classes, boundaries, decision tables, and bounded combination selection |
+| [Inspection guide](skills/exploratory-qa/references/inspection.md) | Text, visual, user-perspective, data-lifetime, accessibility, and platform inspection |
+| [Workflow guide](skills/exploratory-qa/references/workflows.md) | Journey discovery, expected effects, forbidden transitions, transition pairs, and dependencies |
 | [Project context guide](skills/exploratory-qa/references/project-context.md) | Documentation discovery, applicability, and reconciliation |
-| [Findings guide](skills/exploratory-qa/references/findings.md) | Evidence, classification, and reporting rules |
+| [Findings guide](skills/exploratory-qa/references/findings.md) | Evidence, classification, reporting, and manual fix verification |
 | [Examples](skills/exploratory-qa/references/examples.md) | Worked examples and calibrated judgments |
 | [Sources](skills/exploratory-qa/references/sources.md) | Research and methodological references |
 | [Report template](skills/exploratory-qa/assets/report-template.md) | Session summary and individual findings |

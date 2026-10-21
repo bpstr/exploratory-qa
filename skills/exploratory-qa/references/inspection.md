@@ -6,11 +6,14 @@ Choose probes that address an observed inconsistency or a relevant product risk;
 ## Contents
 
 - [Establish the expected experience](#establish-the-expected-experience)
+- [Explore from a specific user's perspective](#explore-from-a-specific-users-perspective)
 - [Read the interface carefully](#read-the-interface-carefully)
 - [Compare small visual details](#compare-small-visual-details)
 - [Follow routes and controls](#follow-routes-and-controls)
 - [Inspect sequences, persistence, and recovery](#inspect-sequences-persistence-and-recovery)
+- [Follow data through its lifetime](#follow-data-through-its-lifetime)
 - [Check input and accessibility behavior](#check-input-and-accessibility-behavior)
+- [Observe actual screen-reader journeys when available](#observe-actual-screen-reader-journeys-when-available)
 - [Describe platform coverage honestly](#describe-platform-coverage-honestly)
 - [Turn observations into justified findings](#turn-observations-into-justified-findings)
 
@@ -22,6 +25,15 @@ Choose probes that address an observed inconsistency or a relevant product risk;
 - Use documented behavior, an approved design, or a comparable working flow as the basis; retain conflicting evidence.
 - Preserve the initial screen and exact state before interacting with a suspected failure.
 - Use only available tools and authorized accounts, data, and actions; record missing capabilities as coverage limits.
+
+## Explore from a specific user's perspective
+
+Choose a plausible user, goal, starting knowledge, and entry point when they expose a relevant risk. Ground these in the product's audience and documentation; invented personas are investigation aids, not evidence from user research.
+
+- Compare what a novice must discover with what a returning user may reasonably remember. Does the interface expose the next action, explain its consequence, and make completion recognizable without unstated team knowledge?
+- Derive a scenario from that person's goal and constraints: for example, a recipient follows an observed notification link without having seen the creator's setup. Use an available, authorized link rather than constructing a guessed route.
+- Consider affected people who do not operate the current screen, such as an approver, report reader, or notification recipient. Follow their side of the handoff only with authorized access; otherwise record the untested perspective.
+- Describe observed misleading cues, missing information, or extra work. A simulated novice perspective supports a usability hypothesis; it does not prove that real users are confused or establish a failure rate.
 
 ## Read the interface carefully
 
@@ -94,6 +106,16 @@ Use [workflows.md](workflows.md) to discover longer journeys, conditional action
 - Record timing and repeat conditions for intermittent failures; do not label an unrepeatable observation as disproved.
 - Stop repeating a sequence once the evidence resolves the current question; broaden only to investigate a concrete remaining risk.
 
+## Follow data through its lifetime
+
+When a record's age or relationships could change its meaning, follow one identifiable test object across the relevant views and events. Preserve its identity, original values, linked objects, and observation times; a similar replacement is not the same history.
+
+- Compare existing or historical records with newly created records only when the distinction matters. Record creation context and applicable rules instead of assuming current defaults apply retroactively.
+- Inspect a relevant relationship after an authorized rename, reassignment, or deactivation, or use an existing fixture in that state. Check whether references still identify the intended object and whether historical views preserve the meaning promised by the product.
+- Follow the same record into supported search results, reports, exports, or recipient views when those are in scope. Distinguish a historical snapshot from a live value before judging a difference.
+- Inspect archive, restore, or deletion behavior only where supported and authorized. Check documented effects on references and history; do not assume restoration reverses every effect or recreate deleted data to make an observation look consistent.
+- If the product does not specify whether a historical label should remain fixed or reflect a later rename, report that ambiguity with both observations rather than declaring either behavior correct.
+
 ## Check input and accessibility behavior
 
 - Navigate the relevant flow by keyboard where supported; observe order, visible focus, activation, and escape paths.
@@ -107,6 +129,15 @@ Use [workflows.md](workflows.md) to discover longer journeys, conditional action
 - Inspect reduced-motion behavior only when the environment exposes that preference and movement can be observed.
 - Use accessibility-tree or DOM evidence to investigate semantics, but do not claim it demonstrates a screen reader's actual announcements.
 - Name the specific observed barrier; do not turn a limited inspection into an accessibility conformance verdict.
+
+## Observe actual screen-reader journeys when available
+
+Use this optional probe when a compatible screen-reader, browser, and platform are available and the environment permits observing their actual output. Name the combination and relevant mode or settings; if access, compatibility, or output cannot be established, mark the journey untested.
+
+- Choose a relevant user goal and follow the reader's normal navigation and activation methods. Compare the encountered names, roles, and states with the control's purpose and applicable expectations; allow reader-specific wording and verbosity.
+- Observe whether validation, completion, and other important state changes become perceivable, and whether focus moves or returns meaningfully after dialogs and navigation. Use the product's timing promises where applicable; do not invent a universal announcement deadline.
+- Record the action, expected semantic information, actual announcement or captured output, and its effect on task completion. Distinguish observed speech, an actual speech-output log, and underlying accessibility-tree text.
+- Preserve unavailable or inconclusive steps as coverage gaps. A tree inspection, visible toast, or authored script does not demonstrate what a screen reader announced, and one journey does not establish accessibility conformance.
 
 ## Describe platform coverage honestly
 
