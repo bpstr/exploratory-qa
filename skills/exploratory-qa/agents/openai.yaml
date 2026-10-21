@@ -1,4 +1,4 @@
 interface:
   display_name: "Exploratory QA"
   short_description: "Find and justify subtle product quality issues"
-  default_prompt: "Use $exploratory-qa to explore this product, read its UI text, and report findings justified by evidence and relevant project documentation."
+  default_prompt: "Use $exploratory-qa to discover this product's workflows, read its UI text, verify action and setting effects, and report findings justified by evidence and relevant project documentation."

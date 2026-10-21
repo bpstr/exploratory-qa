@@ -1,6 +1,6 @@
 ---
 name: exploratory-qa
-description: Explore a product through its rendered interface to find and justify subtle functional, visual, content, and usability problems that authored checks may miss. Use for exploratory QA, visual and interaction review, copy and consistency audits, dead controls, confusing feedback, and cross-platform behavior. Read relevant project or workspace documentation, investigate suspected failures, and produce evidence-backed findings with clear impact and uncertainty.
+description: Explore a product through its rendered interface to discover workflows and justify functional, visual, content, and usability problems that authored checks may miss. Use for exploratory QA, complex user journeys, action and state-transition checks, settings with incorrect downstream effects, visual and copy review, dead controls, and cross-platform behavior. Read relevant project or workspace documentation, compare expected with actual outcomes, and report findings with evidence, impact, and uncertainty.
 ---
 
 # Exploratory QA
@@ -22,7 +22,20 @@ Optimize for useful, justified findings. Do not optimize for click count, a comp
 
 Use the optional [product context template](assets/product-context-template.md) when context needs to be retained or shared. Missing fields are not a reason to stop useful exploration.
 
-## 2. Observe, read, and interact
+## 2. Discover workflows and expected effects
+
+Use [workflows.md](references/workflows.md) when investigating a sequence, a conditional action, or a property that affects later behavior. Discover the journey as well as checking the steps already supplied by the user.
+
+- Start from the user's goal, actors, domain objects, and relevant states. Discover entry points and next actions through actual navigation, contextual menus, help, empty states, and applicable documentation. Follow newly revealed branches when they address the mission; do not invent routes or business rules.
+- Keep a small, evolving map of prerequisites, actions, state transitions, and outcomes across screens or authorized roles. Track the identity of each relevant object and distinguish completed, blocked, and unexamined branches.
+- Before a meaningful action, state what should happen: which object it affects, required conditions, immediate feedback, resulting state, downstream effects, expected non-effects, and relevant timing. Identify what is documented, promised by the UI, or only provisionally inferred. “Something should happen” is not a useful expectation.
+- For a property change, verify both that the value was saved and that the workflow using it behaves accordingly. Check scope, inherited defaults, explicit overrides, current versus newly created objects, and any required activation step. A persisted toggle does not establish that its behavior works.
+- Follow the goal through relevant handoffs and dependent actions. Probe a meaningful alternative branch, action order, cancellation, retry, or resume condition when it can expose a plausible failure. Do not assume every action is repeatable, reversible, or valid in every state.
+- Where useful, compare a baseline and changed condition while holding relevant context stable. Change one factor at a time when practical; record unavoidable differences instead of claiming proof of causality. Use only authorized test objects and consequences.
+- Distinguish accepted, pending, completed, failed, and unknown outcomes. Use documented timing and an observed completion signal where available; report a bounded observation interval when timing is unknown instead of inventing a timeout requirement.
+- If the expected effect is A but the observed effect is B, identify the first observable divergence and preserve the chain from initial state through action or setting to the affected outcome. An unrelated successful action does not satisfy the original goal.
+
+## 3. Observe, read, and interact
 
 Read [inspection.md](references/inspection.md) for the probes relevant to the active charter. Do not turn every probe into a compulsory test matrix.
 
@@ -38,7 +51,7 @@ Capture the failed normal route before a workaround. Do not use forced clicks, d
 
 When rendered access is unavailable, perform only the evidence review that the supplied material supports. State the limitation; do not claim live exploration, visual inspection, or interaction results that did not occur.
 
-## 3. Match a candidate finding to its expectation
+## 4. Match a candidate finding to its expectation
 
 For each candidate worth investigating:
 
@@ -53,7 +66,7 @@ For each candidate worth investigating:
 
 Use [project-context.md](references/project-context.md) when the match is ambiguous. Avoid searching unrelated workspace material or inventing a requirement to justify a preference.
 
-## 4. Challenge the suspicion and preserve evidence
+## 5. Challenge the suspicion and preserve evidence
 
 - Consider permissions, data, configuration, pending work, platform conventions, stale coordinates, and misunderstood intent. Check whether a new tab, delayed result, or offscreen feedback explains an apparently dead control.
 - If a tool fails, establish whether the product action occurred before retrying a mutation. Keep execution limitations separate from product defects.
@@ -63,7 +76,7 @@ Use [project-context.md](references/project-context.md) when the match is ambigu
 - Call a problem a regression only when a sufficiently comparable earlier version or baseline demonstrates the change. Otherwise report the current problem with regression status unknown.
 - Stop investigating a candidate once evidence is sufficient for a responsible finding or a clearly stated uncertainty. Do not rerun the entire suite or platform matrix by default.
 
-## 5. Deliver findings that a team can act on
+## 6. Deliver findings that a team can act on
 
 Read [findings.md](references/findings.md) and use [report-template.md](assets/report-template.md). Put findings before process narration.
 
@@ -73,6 +86,7 @@ For each finding, include:
 
 - A concrete title, affected goal, minimal reproduction context and steps, actual result, and exact relevant UI copy.
 - The expected result, its basis, documentary status and provenance, and why the expectation applies.
+- For workflow or property failures, the relevant prerequisites, effective setting and scope, action sequence, expected effect A, observed effect B, and first observable divergence. Preserve downstream impact without inventing an internal cause.
 - Evidence linked to the observed sequence, observed user impact, any inferred risk, and unresolved alternatives.
 - Category, severity, and confidence as separate judgments with reasons. Use the project's severity rubric where supplied.
 - Regression status and observed reproduction frequency when known. Do not guess missing values.
@@ -97,6 +111,7 @@ Produce a report by default. File issues, change code, update baselines, or publ
 ## Supporting material
 
 - [Inspection guide](references/inspection.md): content, visual details, interaction sequences, accessibility probes, and platform coverage.
+- [Workflow guide](references/workflows.md): discover journeys, define expected actions, trace property effects, and investigate dependent state changes.
 - [Project context](references/project-context.md): targeted document discovery, applicability, and conflicting sources.
 - [Findings guide](references/findings.md): evidence, classification, severity, uncertainty, and efficient investigation.
 - [Worked examples](references/examples.md): calibrated findings and observations that should not become defect claims.

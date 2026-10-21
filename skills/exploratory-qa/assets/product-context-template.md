@@ -33,3 +33,14 @@ Use this optional template to retain facts needed for an investigation. Fill it 
 | [Goal] | [What might fail or mislead] | [A bounded sequence] | [Observable result and its expected basis] |
 
 Revise the charters as evidence changes the priorities. Follow useful leads without silently expanding the authorized scope.
+
+## Workflow notes, when useful
+
+Use the [workflow guide](../references/workflows.md) to keep a small map for the active goal. Omit this section for a simple observation.
+
+- Entry points, actors, object identities, and lifecycle states:
+- Relevant properties, their effective scope, defaults, overrides, and activation conditions:
+- Expected action or property effects and their documentation or other basis:
+- Dependent views, later operations, or authorized role handoffs:
+- Completion signals and applicable timing; distinguish unknown timing from a documented requirement:
+- Branches discovered, exercised, blocked, or left unexamined:

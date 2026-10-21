@@ -79,8 +79,12 @@ Choose probes that address an observed inconsistency or a relevant product risk;
 
 ## Inspect sequences, persistence, and recovery
 
+Use [workflows.md](workflows.md) to discover longer journeys, conditional actions, and settings whose effect appears in a later operation or another view.
+
 - Follow the full relevant sequence: starting state, action, immediate feedback, settled result, and later retrieval.
+- Compare the actual transition with the promised one: opening a menu, saving a draft, submitting for review, and publishing are different outcomes even if each produces visible activity.
 - Verify a reported save by reopening or reloading the affected record when persistence is in scope.
+- After a property persists, exercise the relevant workflow that consumes it. Check the effective scope and any override before judging whether the property changed the behavior correctly.
 - Check that another relevant view agrees with the result; investigate stale labels, badges, totals, and selections.
 - Explore interruption, repeated input, or changed action order only when it tests a plausible risk in this flow.
 - After validation fails, correct the input and check that errors clear, retained data remains, and submission becomes possible.

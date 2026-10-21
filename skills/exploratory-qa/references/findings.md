@@ -14,6 +14,7 @@ Include the following for each finding; mark genuinely unavailable information i
 | User goal and consequence | Explain the affected task and observed impact. Identify plausible risks as inferences. |
 | Reproduction context | Record the route, build where known, role, relevant data/state, platform, viewport, input method, and locale. Include only conditions that affect understanding or reproduction. |
 | Actions and outcome | Give minimal steps, actual behavior, and any relevant waits, retries, navigation, or refresh. |
+| Workflow divergence, when relevant | Connect prerequisites, effective property values and scope, the action sequence, expected effect A, and observed effect B. Identify the first observable mismatch and downstream consequence without assuming an internal cause. |
 | Expected behavior | State the expectation and its source: applicable document, UI promise, product consistency, task outcome, or standard. Explain why it applies. |
 | Evidence | Link screenshots, recordings, or captured output to the relevant actions and states. |
 | Assessment | Record finding category, severity, and confidence separately. State unresolved questions and competing evidence. |

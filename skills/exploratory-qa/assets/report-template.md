@@ -29,9 +29,13 @@
 
 [Exact observed UI copy, preserving punctuation and locale. Identify whether it came from a screenshot, visible browser text, DOM, accessibility text, OCR, or a supplied transcript.]
 
+[For a workflow or property failure, retain the chain: initial object/state and prerequisites; effective property value, scope, and overrides; normal action; immediate feedback; later state or dependent operation. Identify the first observable divergence. Distinguish a saved value from evidence that its intended effect occurred. Omit this paragraph for simple findings.]
+
 **Expected result and justification**
 
 [What should happen and why: applicable requirement, explicit UI promise, established equivalent behavior, task outcome, or applicable standard. Explain the correspondence, not just the source title.]
+
+[For conditional behavior, state: under these conditions, this action or setting should cause A; the evidence shows B. Include relevant timing and expected non-effects. Mark inferred expectations or unknown completion timing explicitly.]
 
 - **Document status:** [Applicable / No match / Unavailable / Apparently stale / Conflicting]
 - **Source:** [Path or canonical URI, section, available revision/date; or scoped search locations and meaningful terms if no match]
@@ -57,6 +61,7 @@
 ## Coverage and limitations
 
 - **Examined:** [Goals, flows, states, documentation, and material probes actually reviewed.]
+- **Workflow coverage, when relevant:** [Entry points and branches discovered, transitions or setting effects examined, and handoffs or dependencies left unexamined.]
 - **Platforms:** [Actual browser/OS/device or emulation; viewport, input, locale, theme, zoom where relevant.]
 - **Evidence mode:** [Live exploration / supplied evidence review / a clearly described combination.]
 - **Blocked or unexamined:** [Unsupported tools, missing access, unvisited flows, and platform gaps. Keep tool errors separate from product findings.]

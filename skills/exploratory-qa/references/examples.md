@@ -57,3 +57,35 @@ Retain both sources, their status and scope, and the observed disabled state. Re
 A supplied image shows a “Saved” toast. A later image shows different text, but the record identifiers are missing. The images do not establish that the same record lost its changes.
 
 Request or collect the minimum missing evidence if possible: identity of the record, the save sequence, later retrieval, and applicable asynchronous behavior. Until then, retain the uncertainty. Do not claim data loss, reproduction frequency, or a storage root cause.
+
+## A saved property is ignored by the operation it governs
+
+**Finding:** A contributor starts a task without an estimate despite the project's enabled estimate requirement.
+
+Fictional `docs/task-workflow.md`, “Start prerequisites,” approved revision `r8`, requires an estimate before contributors start tasks in projects with this setting enabled. Confirm the project, task, contributor role, and absence of a documented override. Save the setting, reload it, then start an eligible task with no estimate. The task enters “In progress” and retains that state after reload: expected rejection (A), observed transition (B).
+
+Use a controlled comparison with equivalent task prerequisites and the setting disabled, keeping role and project fixed. If both conditions permit starting, the setting persists but its documented effect is absent. **Document status: Applicable; assessment: Defect** when these conditions are established. If the active role or effective configuration cannot be verified, report a **Suspected defect**. Do not infer which service ignored the setting.
+
+## A button performs a different valid transition
+
+**Finding:** “Save draft” publishes the article instead of preserving its draft state.
+
+In an authorized test workspace, inspect an unpublished article as an author. Fictional `docs/editorial-workflow.md`, “Draft actions,” revision `r16`, permits authors to save drafts but reserves publication for an explicit publish action. Change the title and activate “Save draft.” A “Saved” toast appears, but the article subsequently shows “Published” in its detail view and appears in the reader listing. Confirm the article identity and state after reload; do not rely on the toast alone.
+
+**Document status: Applicable; assessment: Defect** if the observed publication came from this action. Saving and publishing may each be valid operations, but their permissions and consequences differ. Check whether scheduled publication or another authorized actor explains the transition before attributing it. Without that distinction, retain a **Suspected defect** and identify the missing evidence. Avoid publishing real content to reproduce it.
+
+## An inherited setting legitimately does not change existing items
+
+**Observation:** Changing the workspace's default notification channel leaves an existing project's channel unchanged.
+
+Fictional `docs/notification-settings.md`, “Defaults and overrides,” approved revision `r4`, states that the workspace default initializes newly created projects; existing projects retain their own channel. Read the project's effective setting and any explicit override. Compare an existing project with a newly created test project under the same workspace: the former retains its saved channel, while the latter receives the new default. This matches the documented object scope and timing.
+
+**Document status: Applicable; assessment: resolved observation, no defect.** Do not infer that a default is a live inheritance rule. If the interface instead promises “Apply to all existing projects,” investigate that separate contradiction between copy and behavior. Preserve both the documentation and wording; classify a **Product question** if the intended contract remains unresolved, rather than quietly choosing whichever source fits the implementation.
+
+## An asynchronous action has not yet established an outcome
+
+**Observation:** “Rebuild index” acknowledges a request, but search results remain unchanged during the recorded interval.
+
+Fictional `docs/search-operations.md` describes queued processing but provides no completion deadline. Record the affected index, request time, visible job state, and observation interval. “Queued” establishes acceptance, not completion or failure. Check an available job-status view and, once completion is reported, repeat the relevant search with controlled inputs.
+
+**Document status: Applicable for asynchronous behavior; timing expectation unresolved.** While work remains queued, record the operation as pending and the outcome as unverified. Do not label it a defect solely because the exploration budget ended. An applicable deadline that is exceeded, a completed job with demonstrably stale results, or missing promised progress feedback can support a separate finding. State which condition was actually observed.
